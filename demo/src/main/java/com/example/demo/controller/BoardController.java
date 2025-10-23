@@ -26,5 +26,16 @@ public class BoardController {
 		
 		return "board/list";
 	}
+	
+	@GetMapping("/view.do")
+	public String view(Long no, int inc, Model model) {
+		log.info("no=" + no + " inc=" + inc);
+		
+		model.addAttribute("vo", service.view(no, inc));
+		
+		log.info("model=" + model);
+		
+		return "board/view";
+	}
 
 }

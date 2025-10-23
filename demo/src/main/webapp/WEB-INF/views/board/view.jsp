@@ -12,45 +12,37 @@
 	  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   
-<style type="text/css">
-.dataRow:hover{
-	background: #e0e0e0;
-	cursor: pointer;
-}
-</style>
 
-<script type="text/javascript">
-	$(function(){
-		$(".dataRow").on("click", funtion(){
-			let no = $(this).find(".no").text();
-			alert(no);
-			location = "view.do?no=" + no + "&inc=1";
-		})
-	})
-	
-</script>
-  
 </head>
 <body>
 <div class="container">
-    <h2>리스트</h2>
+    <h2>상세 페이지</h2>
     <table class="table">
 	    <tr>
 	    	<th>번호</th>
-	    	<th>제목</th>
-	    	<th>작성자</th>
-	    	<th>작성일</th>
-	    	<th>조회수</th>
+			<td>${vo.no}</td>
 	    </tr>
-	    <c:forEach var="vo" items="${list}">
-		    <tr class="dataRow">
-		    	<td class="no">${vo.no}</td>
-		    	<td>${vo.title}</td>
-		    	<td>${vo.writer}</td>
-		    	<td><fmt:formatDate value="${vo.writeDate}" pattern="yyyy-MM-dd"/></td>
-		    	<td>${vo.hit}</td>
-		    </tr>
-		</c:forEach>
+	    <tr>
+	    	<th>제목</th>
+			<td><pre>${vo.title}</pre></td>
+	    </tr>
+	    <tr>
+	    	<th>내용</th>
+			<td>${vo.content}</td>
+	    </tr>
+	    <tr>
+	    	<th>작성자</th>
+			<td>${vo.writer}</td>
+	    </tr>
+	    <tr>
+	    	<th>작성일</th>
+			<td><fmt:formatDate value="${vo.writeDate}" pattern="yyyy-MM-dd"/></td>
+	    </tr>
+	    <tr>
+	    	<th>조회수</th>
+			<td>${vo.hit}</td>
+	    </tr>
+	    
 	</table>
 </div>
 </body>

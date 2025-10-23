@@ -10,4 +10,8 @@ import com.example.demo.vo.BoardVO;
 public interface BoardMapper {
 	
 	public List<BoardVO> list(); 
+	
+	public Integer increase(Long no); 
+	
+	public BoardVO view(Long no);
 }

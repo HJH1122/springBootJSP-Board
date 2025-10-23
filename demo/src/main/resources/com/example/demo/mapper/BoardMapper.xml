@@ -5,12 +5,25 @@
 <mapper namespace="com.example.demo.mapper.BoardMapper">
 
 	<select id="list" resultType="com.example.demo.vo.BoardVO">
-		SELECT no, title, writer, write_date, hit
+		SELECT no, title, writer, write_date AS writeDate, hit
 		FROM board1
 		ORDER BY no DESC
 		LIMIT 10 OFFSET 0;
 	</select>
 	
 	
+	<update id="increase">
+		UPDATE board1 
+		SET 
+			hit = hit + 1
+		WHERE
+			no = #{no}
+	</update>
+	
+	<select id="view" resultType="com.example.demo.vo.BoardVO">
+		SELECT no, title, content, writer, write_date AS writeDate, hit
+		FROM board1
+		WHERE no = #{no}
+	</select>
 	
 </mapper>

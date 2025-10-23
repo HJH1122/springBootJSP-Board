@@ -17,5 +17,14 @@ public class BoardService {
 	public List<BoardVO> list(){
 		return mapper.list();
 	}
+	
+	public BoardVO view(Long no, int inc){
+		
+		if(inc == 1) {
+			mapper.increase(no);
+		}
+		
+		return mapper.view(no);
+	}
 
 }
