@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.example.demo.vo.BoardVO;
+import com.example.demo.board.vo.BoardVO;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "com.example")

@@ -1,4 +1,4 @@
-package com.example.demo.mapper;
+package com.example.demo.board.mapper;
 
 import java.util.Date;
 

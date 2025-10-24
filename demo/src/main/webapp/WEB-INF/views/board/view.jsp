@@ -44,6 +44,8 @@
 	    </tr>
 	    
 	</table>
+	<jsp:include page="reply.jsp"/>
+
 </div>
 </body>
 </html>
