@@ -7,9 +7,25 @@
 	<select id="getTotalRow" resultType="Long">
 		SELECT count(*)
 		FROM board_reply
+		WHERE no = #{no}
 
 	</select>
 
+	<select id="list" resultType="com.example.demo.board.vo.BoardReplyVO">
+	     <bind name="offset" value="pageObject.startRow - 1" />
+
+		    SELECT 
+		        rno,
+		        no,
+		        content,
+		        id,
+		        write_date AS writeDate
+		    FROM board_reply
+		    WHERE no = #{no}
+		    ORDER BY rno ASC
+		    LIMIT #{pageObject.perPageNum}
+		    OFFSET #{offset}
+	</select>
 	
 	
 </mapper>

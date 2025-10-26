@@ -11,10 +11,10 @@
 				</button>
 			</span>
 		</div>
-		<div class="card-body">
+		<div class="card-body" id="dataDiv">
 			데이터 표시
 		</div>
-		<div class="card-footer">
+		<div class="card-footer" id="replyPageNav">
 			페이지네이션
 		</div>
 	</div>
@@ -27,18 +27,22 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title">댓글 등록</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
-        Modal body..
+        <div class="form-group">
+		  <label for="comment">댓글 입력</label>
+		  <textarea class="form-control" rows="5" id="replyContent"></textarea>
+		</div>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-success" >등록</button>
       </div>
 
     </div>
@@ -49,7 +53,7 @@
 
 	//게시판 글 번호 받기
 	let no = ${vo.no};
-	let replyPage = 1; 
+	let page = 1; 
 	
 	
 </script>
