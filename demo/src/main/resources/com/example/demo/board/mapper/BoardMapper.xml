@@ -16,7 +16,8 @@
 		        title,
 		        writer,
 		        write_date AS writeDate,
-		        hit
+		        hit,
+		        (select count(*) from board_reply br where br.no = board1.no) AS replyCnt
 		    FROM board1
 		    ORDER BY no DESC
 		    LIMIT #{perPageNum} OFFSET #{limit}

@@ -15,7 +15,7 @@
 			데이터 표시
 		</div>
 		<div class="card-footer" id="replyPageNav">
-			페이지네이션
+			<ul class="pagination justify-content-center" style="margin:20px 0"></ul>
 		</div>
 	</div>
 
@@ -57,5 +57,6 @@
 	
 	
 </script>
+<script src="/js/util.js"></script>
 <script src="/js/reply.js"></script>
 <script src="/js/replyProcess.js"></script>

@@ -14,6 +14,6 @@ public class BoardVO {
 	private Date writeDate;
 	private Long hit;
 	private String pw;
-	
+	private Long replyCnt;
 
 }

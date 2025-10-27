@@ -46,7 +46,11 @@
 	    <c:forEach var="vo" items="${list}">
 		    <tr class="dataRow">
 		    	<td class="no">${vo.no}</td>
-		    	<td>${vo.title}</td>
+		    	<td>${vo.title}
+		    		<c:if test="${vo.replyCnt != 0}">
+		    			<span class="badge badge-pill badge-success">${(vo.replyCnt) > 10 ? "10+" : vo.replyCnt}</span>
+		    		</c:if>
+		    	</td>
 		    	<td>${vo.writer}</td>
 		    	<td><fmt:formatDate value="${vo.writeDate}" pattern="yyyy-MM-dd"/></td>
 		    	<td>${vo.hit}</td>

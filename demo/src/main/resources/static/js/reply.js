@@ -8,7 +8,7 @@ let replyService = (function(){
 		let no = param.no;
 		let page = param.page || 1;
 		
-		$.getJSON("/boardreply/list.do?no=" + no + "&page" + page,
+		$.getJSON("/boardreply/list.do?no=" + no + "&page=" + page,
 			function(data, status, xhr){
 				console.log("data=", JSON.stringify(data));
 				

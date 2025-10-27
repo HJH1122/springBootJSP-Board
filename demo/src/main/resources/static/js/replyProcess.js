@@ -6,13 +6,15 @@ function showList(page){
 		let list = data.list;
 		let str = "";
 		
-		if(!list || list.length == 0) str += "댓글이 존재하지 않습니다.";
-		else {
+		if(!list || list.length == 0) {
+				str += "댓글이 존재하지 않습니다.";
+				$("#replyPageNav").hide();
+		} else {
 			for(let i = 0; i < list.length; i++){
 				str += `<div class="card">`
 				str += `		<div class="card-header">`
 				str += `			<span class="font-weight-bold">${list[i].id}</span>`
-				str += `			<span class="float-right">${list[i].writeDate}</span>`
+				str += `			<span class="float-right">${displayTime(list[i].writeDate)}</span>`
 				str += `		</div>`
 				str += `		<div class="card-body" id="dataDiv"><pre>${list[i].content}</pre>`
 				if(list[i].id == data.id){
@@ -22,12 +24,22 @@ function showList(page){
 				str += `</div>`
 				str += `	</div>`
 			}
+			$("#replyPageNav > ul").html(showPageNav(data.pageObject));
+			$("#replyPageNav").show();
 		}
 		
 		$("#dataDiv").html(str);
 	})
 	
 }
+
+$("#replyPageNav > ul").on("click", "li", function(){
+	if(!$(this).hasClass("disabled")){
+		let page = $(this).data("page");
+		showList(page);
+	}
+});
+
 
 $(function(){
 	showList(1);
