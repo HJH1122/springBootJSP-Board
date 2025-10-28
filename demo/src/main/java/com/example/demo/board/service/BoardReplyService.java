@@ -23,7 +23,7 @@ public class BoardReplyService {
 			
 	public Integer write(BoardReplyVO vo){
 		
-		return null;
+		return mapper.write(vo);
 	}	
 	
 	public Integer update(BoardReplyVO vo){

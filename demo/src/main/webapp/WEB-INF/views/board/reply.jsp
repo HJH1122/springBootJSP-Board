@@ -6,7 +6,7 @@
 		<div class="card-header">
 			<span class="font-weight-bold">댓글</span>
 			<span class="float-right">
-				<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#boardReplyModal">
+				<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#boardReplyModal" id="replyWriteBtn">
 				  write
 				</button>
 			</span>
@@ -41,8 +41,35 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
+        <button type="button" class="btn btn-success" id="modalReplyWriteBtn">등록</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
-        <button type="button" class="btn btn-success" >등록</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- 처리 결과 모달 -->
+<div class="modal" id="resultModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">처리 결과</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body" id="resultModalBody">
+       
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
       </div>
 
     </div>

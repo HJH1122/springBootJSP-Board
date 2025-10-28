@@ -26,8 +26,29 @@ let replyService = (function(){
 		
 	}
 	
-	function write(){
+	function write(reply, callback, error){
 		console.log("댓글 등록 처리");
+		$.ajax({
+			type: "post",
+			url: "/boardreply/write.do",
+			data: JSON.stringify(reply),
+			contentType: "application/json; charset=utf-8",
+			success: function(result, status, xhr){
+				if(callback){
+					callback(result);
+				} else {
+					alert(result);
+				}
+				
+			},
+			error: function(xhr, status, er){
+				console.log("reply.js xhr=" , xhr);
+				console.log("reply.js status=" , status);
+				console.log("reply.js er=" , er);
+				if(error) error();
+				else alert("댓글 등록 실패");
+			},
+		})
 	}
 		
 	function update(){

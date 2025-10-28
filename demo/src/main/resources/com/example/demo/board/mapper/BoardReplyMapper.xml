@@ -27,5 +27,10 @@
 		    OFFSET #{offset}
 	</select>
 	
+	<insert id="write">
+		insert into board_reply(no, content, id)
+		values (#{no}, #{content}, #{id})
+	</insert>
+	
 	
 </mapper>

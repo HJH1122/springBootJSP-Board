@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,11 +42,13 @@ public class BoardReplyController {
 		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
 	
-	@PostMapping("/write.do")
-	public ResponseEntity<String> write(PageObject pageObject, HttpSession session){
+	@PostMapping(value="/write.do", consumes = MediaType.APPLICATION_JSON_VALUE, produces=MediaType.TEXT_PLAIN_VALUE + ";charset=utf-8")
+	public ResponseEntity<String> write(@RequestBody BoardReplyVO vo, HttpSession session){
+		vo.setId("test");
 		
+		service.write(vo);
 		
-		return null;
+		return new ResponseEntity<String>("댓글이 등록되었습니다.", HttpStatus.OK);
 	}
 	
 	@PostMapping("/update.do")

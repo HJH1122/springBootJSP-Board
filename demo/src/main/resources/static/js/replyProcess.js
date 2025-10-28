@@ -38,6 +38,23 @@ $("#replyPageNav > ul").on("click", "li", function(){
 		let page = $(this).data("page");
 		showList(page);
 	}
+	return false;
+});
+
+
+$("replyWriteBtn").on("click", function(){
+	$("#replyContent").val("");
+});
+
+$("#modalReplyWriteBtn").on("click", function(){
+	let reply = {no: no, content: $("#replyContent").val()};
+	replyService.write(reply, function(result){
+		showList(1);
+		
+		$("#resultModalBody").text(result);
+		$("#resultModal").modal("show");
+	});
+	$("#boardReplyModal").modal("hide");
 });
 
 
