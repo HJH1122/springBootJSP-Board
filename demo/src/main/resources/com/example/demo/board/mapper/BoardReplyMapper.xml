@@ -32,5 +32,16 @@
 		values (#{no}, #{content}, #{id})
 	</insert>
 	
+	<update id="update">
+		update board_reply
+		set content = #{content}
+		where rno = #{rno} and id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from board_reply
+		where rno = #{rno} and id = #{id}
+	</delete>
+	
 	
 </mapper>

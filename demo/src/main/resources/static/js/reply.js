@@ -27,7 +27,6 @@ let replyService = (function(){
 	}
 	
 	function write(reply, callback, error){
-		console.log("댓글 등록 처리");
 		$.ajax({
 			type: "post",
 			url: "/boardreply/write.do",
@@ -51,12 +50,51 @@ let replyService = (function(){
 		})
 	}
 		
-	function update(){
-			console.log("댓글 수정 처리");
+	function update(reply, callback, error){
+		$.ajax({
+					type: "post",
+					url: "/boardreply/update.do",
+					data: JSON.stringify(reply),
+					contentType: "application/json; charset=utf-8",
+					success: function(result, status, xhr){
+						if(callback){
+							callback(result);
+						} else {
+							alert(result);
+						}
+						
+					},
+					error: function(xhr, status, er){
+						console.log("reply.js xhr=" , xhr);
+						console.log("reply.js status=" , status);
+						console.log("reply.js er=" , er);
+						if(error) error();
+						else alert("댓글 수정 실패");
+					},
+				});
+			
 	}
 			
-	function deleteReply(){
-			console.log("댓글 삭제 처리");
+	function deleteReply(rno, callback, error){
+		$.ajax({
+				type: "get",
+				url: "/boardreply/delete.do?rno=" + rno,
+				success: function(result, status, xhr){
+					if(callback){
+						callback(result);
+					} else {
+						alert(result);
+					}
+					
+				},
+				error: function(xhr, status, er){
+					console.log("reply.js xhr=" , xhr);
+					console.log("reply.js status=" , status);
+					console.log("reply.js er=" , er);
+					if(error) error();
+					else alert("댓글 삭제 실패");
+				},
+			});
 	}
 	
 	return{

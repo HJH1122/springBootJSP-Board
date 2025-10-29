@@ -19,5 +19,5 @@ public interface BoardReplyMapper {
 	
 	public Integer update(BoardReplyVO vo);
 	
-	public Integer delete(Long rno);
+	public Integer delete(BoardReplyVO vo);
 }

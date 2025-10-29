@@ -28,12 +28,12 @@ public class BoardReplyService {
 	
 	public Integer update(BoardReplyVO vo){
 		
-		return null;
+		return mapper.update(vo);
 	}
 	
-	public Integer delete(Long rno){
+	public Integer delete(BoardReplyVO vo){
 		
-		return null;
+		return mapper.delete(vo);
 	}
 
 }

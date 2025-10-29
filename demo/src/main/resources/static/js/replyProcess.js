@@ -11,12 +11,12 @@ function showList(page){
 				$("#replyPageNav").hide();
 		} else {
 			for(let i = 0; i < list.length; i++){
-				str += `<div class="card">`
+				str += `<div class="card dataRow" data-rno="${list[i].rno}">`
 				str += `		<div class="card-header">`
 				str += `			<span class="font-weight-bold">${list[i].id}</span>`
 				str += `			<span class="float-right">${displayTime(list[i].writeDate)}</span>`
 				str += `		</div>`
-				str += `		<div class="card-body" id="dataDiv"><pre>${list[i].content}</pre>`
+				str += `		<div class="card-body"><pre class="replyContent">${list[i].content}</pre>`
 				if(list[i].id == data.id){
 					str += `<hr><button class="btn btn-success btn-sm replyUpdateBtn">수정</button>`;
 					str += `<button class="btn btn-danger btn-sm replyDeleteBtn">삭제</button>`;
@@ -29,6 +29,7 @@ function showList(page){
 		}
 		
 		$("#dataDiv").html(str);
+		replyPage = page;
 	})
 	
 }
@@ -42,8 +43,11 @@ $("#replyPageNav > ul").on("click", "li", function(){
 });
 
 
-$("replyWriteBtn").on("click", function(){
+$("#replyWriteBtn").on("click", function(){
 	$("#replyContent").val("");
+	$("#modalReplyWriteBtn").show();
+	$("#modalReplyUpdateBtn").hide();
+	
 });
 
 $("#modalReplyWriteBtn").on("click", function(){
@@ -55,6 +59,40 @@ $("#modalReplyWriteBtn").on("click", function(){
 		$("#resultModal").modal("show");
 	});
 	$("#boardReplyModal").modal("hide");
+});
+
+$("#dataDiv").on("click", ".replyUpdateBtn", function(){
+	let dataRowObj = $(this).closest(".dataRow");
+	let rno = dataRowObj.data("rno");
+	$("#replyRno").val(rno);
+	$("#replyContent").val(dataRowObj.find(".replyContent").text());
+	$("#modalReplyWriteBtn").hide();
+	$("#modalReplyUpdateBtn").show();
+	$("#boardReplyModal").modal("show");
+	
+});
+
+$("#modalReplyUpdateBtn").on("click", function(){
+	let reply = {rno: $("#replyRno").val(), content: $("#replyContent").val()};
+	replyService.update(reply, function(result){
+		showList(replyPage);
+				
+		$("#resultModalBody").text(result);
+		$("#resultModal").modal("show");
+	});
+	$("#boardReplyModal").modal("hide");
+});
+
+$("#dataDiv").on("click", ".replyDeleteBtn",function(){
+	if(confirm("정말 댓글을 삭제하시겠습니까?")){
+		let rno = $(this).closest(".dataRow").data("rno");
+		replyService.delete(rno, function(result){
+			showList(1);
+			
+			$("#resultModalBody").text(result);
+			$("#resultModal").modal("show");
+		});
+	}
 });
 
 

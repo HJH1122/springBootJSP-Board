@@ -51,18 +51,31 @@ public class BoardReplyController {
 		return new ResponseEntity<String>("댓글이 등록되었습니다.", HttpStatus.OK);
 	}
 	
-	@PostMapping("/update.do")
-	public ResponseEntity<String> update(PageObject pageObject, HttpSession session){
+	@PostMapping(value="/update.do", consumes = MediaType.APPLICATION_JSON_VALUE, produces=MediaType.TEXT_PLAIN_VALUE + ";charset=utf-8")
+	public ResponseEntity<String> update(@RequestBody BoardReplyVO vo, HttpSession session){
+		vo.setId("test");
 		
+		Integer result = service.update(vo);
 		
-		return null;
+		if(result == 0) {
+			return new ResponseEntity<String>("댓글수정에 실패했습니다.", HttpStatus.PRECONDITION_FAILED);
+		}
+		
+		return new ResponseEntity<String>("댓글이 수정되었습니다.", HttpStatus.OK);
 	}
 	
-	@GetMapping("/delete.do")
-	public ResponseEntity<String> delete(PageObject pageObject, HttpSession session){
+	@GetMapping(value="/delete.do", produces=MediaType.TEXT_PLAIN_VALUE + ";charset=utf-8")
+	public ResponseEntity<String> delete(BoardReplyVO vo, HttpSession session){
+		vo.setId("test");
+		
+		Integer result = service.delete(vo);
 		
 		
-		return null;
+		if(result == 0) {
+			return new ResponseEntity<String>("댓글삭제에 실패했습니다.", HttpStatus.PRECONDITION_FAILED);
+		}
+		
+		return new ResponseEntity<String>("댓글이 삭제되었습니다.", HttpStatus.OK);
 	}
 
 }
